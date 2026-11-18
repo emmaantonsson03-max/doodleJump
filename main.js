@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(300, 300);
   background(255);
 }
 
@@ -17,4 +17,3 @@ console.log("test 123");
 
 write(5);
 write(10);
-
