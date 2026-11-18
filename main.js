@@ -17,4 +17,3 @@ console.log("test 123");
 
 write(5);
 write(10);
-
