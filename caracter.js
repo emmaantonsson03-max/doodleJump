@@ -3,7 +3,7 @@ export default class Character {
   constructor() {
     // Character properties
     this.x = 100;
-    this.y = 350;
+    this.y = 250;
     this.width = 30;
     this.height = 30;
 
