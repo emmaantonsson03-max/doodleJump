@@ -30,7 +30,12 @@ export default class Platforms {
   }
 
   draw() {
+    this.platforms = this.platforms.filter(function (platform) {
+      return platform.y < height;
+    });
     for (let platform of this.platforms) {
+      platform.y = platform.y + 1;
+
       //it draws the platforms
       rect(platform.x, platform.y, platform.w, platform.h);
 
@@ -41,8 +46,15 @@ export default class Platforms {
           platform.speed = platform.speed * -1;
         }
       } else if (platform.type === "breaking") {
-        platform.h = 7;
+        //create breaking platform effect
       }
+    }
+    fill(0);
+    text(this.platforms.length, 10, 20);
+  }
+  movePlatforms(amount) {
+    for (let platform of this.platforms) {
+      platform.y += amount;
     }
   }
 }
