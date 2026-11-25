@@ -7,7 +7,7 @@ export default class Character {
     this.width = 30;
     this.height = 30;
 
-    this.speed = 20;
+    this.speed = 15;
     this.velocityY = -10;
     this.gravity = 0.4;
   }
