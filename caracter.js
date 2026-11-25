@@ -26,6 +26,7 @@ drawPlatform();
 
 
 
+
 }
 
 function moveCharacter(){
@@ -50,9 +51,9 @@ if(keyIsDown(RIGHT_ARROW)){
 
  if(
         velocityY > 0 &&
-        characterY + 50 >= platformY &&
-        characterY + 50 <= platformY + platformHeight + velocityY &&
-        characterX + 50 > platformX &&
+        characterY + 30 >= platformY &&
+        characterY + 30 <= platformY + platformHeight + velocityY &&
+        characterX + 30 > platformX &&
         characterX < platformX + platformWidth
     ){
         characterY = platformY - 50;
@@ -64,7 +65,7 @@ if(keyIsDown(RIGHT_ARROW)){
         
 function drawCharacter(){
     fill(0);
-    rect(characterX,characterY,50,50);
+    rect(characterX,characterY,30,30);
 }
 
 
