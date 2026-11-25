@@ -39,7 +39,7 @@ export default class Platforms {
     this.platforms = this.platforms.filter(function (platform) {
       return platform.y < height;
     });
-
+    // this generates new platforms.
     while (this.platforms.length < 5) {
       this.platforms.push(this.makePlatform(0));
     }
