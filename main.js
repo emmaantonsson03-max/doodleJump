@@ -37,6 +37,7 @@ function draw() {
 
   platformManager.draw();
   character.moveCharacter();
+  character.checkCollision(platformManager);
   character.drawCharacter();
   drawPlatform();
 
