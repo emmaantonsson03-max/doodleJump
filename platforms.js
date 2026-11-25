@@ -1,6 +1,6 @@
 let platforms = [];
 function setup() {
-  createCanvas(300, 400);
+  createCanvas(300, 500);
 }
 
 // generate 5 platforms
@@ -29,7 +29,7 @@ function draw() {
       platform.x = platform.x + 1;
 
       if (platform.x < 0 || platform.x > width - platform.w) {
-        console.log("Platform is out of bounds");
+        //console.log("Platform is out of bounds");
         // make the platform move left and right
       }
     } else if (platform.type === "breaking") {
