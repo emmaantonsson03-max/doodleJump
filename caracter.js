@@ -1,93 +1,44 @@
-let characterX = 100;
-let characterY = 350;
+export default class Character {
 
-let characterSpeed = 20;
-let velocityY = -10;
-let gravity = 0.4;
+  constructor() {
+    // Character properties
+    this.x = 100;
+    this.y = 350;
+    this.width = 30;
+    this.height = 30;
 
-let platformX = 75;
-let platformY = 400;
-let platformWidth = 100;
-let platformHeight = 10;
-let gameOver = false;
-
-function setup() {
-  createCanvas(300, 500);
-}
-
-function draw() {
-  background(255);
-
-  if (gameOver == true) {
-    fill(0);
-    textSize(30);
-    textAlign(CENTER);
-    text("GAME OVER", width / 2, height / 2);
-
-    textSize(15);
-    text("Press SPACE to restart", width / 2, height / 2 + 35);
-
-    return;
+    this.speed = 20;
+    this.velocityY = -10;
+    this.gravity = 0.4;
   }
 
-  moveCharacter();
-  drawCharacter();
-  drawPlatform();
+  moveCharacter() {
+    // Gravity
+    this.velocityY = this.velocityY + this.gravity;
+    this.y = this.y + this.velocityY;
 
-  // Check if character falls off screen
-  if (characterY > height) {
-    gameOver = true;
-  }
-}
+    // Move left
+    if (keyIsDown(LEFT_ARROW)) {
+      this.x = this.x - this.speed;
+    }
 
-function moveCharacter() {
-  //Gravity
-  velocityY = velocityY + gravity;
-  characterY = characterY + velocityY;
+    // Move right
+    if (keyIsDown(RIGHT_ARROW)) {
+      this.x = this.x + this.speed;
+    }
 
-  //Move left
-  if (keyIsDown(LEFT_ARROW)) {
-    characterX = characterX - characterSpeed;
-  }
-
-  //move right
-  if (keyIsDown(RIGHT_ARROW)) {
-    characterX = characterX + characterSpeed;
     // Stay inside canvas
-    characterX = constrain(characterX, 0, 250);
+    this.x = constrain(this.x, 0, 270);
   }
 
-  if (
-    velocityY > 0 &&
-    characterY + 30 >= platformY &&
-    characterY + 30 <= platformY + platformHeight + velocityY &&
-    characterX + 30 > platformX &&
-    characterX < platformX + platformWidth
-  ) {
-    characterY = platformY - 50;
-    velocityY = -10;
+  drawCharacter() {
+    fill(0);
+    rect(this.x, this.y, this.width, this.height);
   }
-}
 
-function drawCharacter() {
-  fill(0);
-  rect(characterX, characterY, 30, 30);
-}
-
-function drawPlatform() {
-  fill("green");
-  rect(platformX, platformY, platformWidth, platformHeight);
-}
-
-function restartGame() {
-  characterX = 100;
-  characterY = 350;
-  velocityY = -10;
-  gameOver = false;
-}
-
-function keyPressed() {
-  if (gameOver == true && key == " ") {
-    restartGame();
+  restartCharacter() {
+    this.x = 100;
+    this.y = 350;
+    this.velocityY = -10;
   }
 }
