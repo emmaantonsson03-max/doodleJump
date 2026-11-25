@@ -1,19 +1,22 @@
+import platforms from "./platforms.js";
+
+let platformmanager;
+
 function setup() {
-  createCanvas(300, 400);
-  background(255);
+  createCanvas(300, 500);
+  platformmanager = new platforms();
+  platformmanager.setup();
 }
 
 function draw() {
-  fill(255);
-  ellipse(20, 10, 50);
+  background(255);
+  platformmanager.draw();
 }
 
-let x;
+window.setup = setup;
+window.draw = draw;
 
-function write(x) {
-  console.log(x);
+function setup() {
+  createCanvas(300, 500);
+  background(255);
 }
-console.log("test 123");
-
-write(5);
-write(10);
