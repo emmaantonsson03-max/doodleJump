@@ -16,12 +16,12 @@ let platformHeight = 10;
 let gameOver = false;
 let cameraY = 0;
  
-let score = 0;
+let score = 0; 
 let highScore = 0;
 
 function setup() {
   createCanvas(300, 500);
-  
+
 
   character = new Character();
   platformManager = new Platforms();
