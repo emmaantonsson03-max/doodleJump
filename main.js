@@ -39,7 +39,6 @@ function draw() {
   character.moveCharacter();
   character.checkCollision(platformManager);
   character.drawCharacter();
-  drawPlatform();
 
   // Check if character falls off screen
   if (character.y > height) {
