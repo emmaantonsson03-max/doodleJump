@@ -12,16 +12,19 @@ let platformHeight = 10;
 
 function setup(){
     createCanvas(300,400);
-    
 }
 
 function draw(){
-background(255);
+background(255);   
+
 
 
 moveCharacter();
 drawCharacter();
 drawPlatform(); 
+
+
+
 
 }
 
@@ -41,6 +44,7 @@ if(keyIsDown(RIGHT_ARROW)){
     characterX = characterX + characterSpeed;
 // Stay inside canvas
     characterX = constrain(characterX, 0, 250);
+
 
 }
 
@@ -67,7 +71,6 @@ function drawCharacter(){
 function drawPlatform(){
     fill("green");
     rect(platformX,platformY,platformWidth,platformHeight);
-
 
 }
 
