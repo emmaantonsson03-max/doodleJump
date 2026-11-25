@@ -10,7 +10,7 @@ function setup() {
 
 function draw() {
   background(255);
-  platformmanager.draw(); 
+  platformmanager.draw();
 }
 
 window.setup = setup;
@@ -59,11 +59,6 @@ function draw() {
   if (character.y > height) {
     gameOver = true;
   }
-}
-
-function drawPlatform() {
-  fill("green");
-  rect(platformX, platformY, platformWidth, platformHeight);
 }
 
 // Restart game
