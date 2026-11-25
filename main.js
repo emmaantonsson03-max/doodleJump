@@ -1,4 +1,4 @@
-import platforms from "./Platforms.js";
+import Platforms from "./platforms.js";
 import Character from "./caracter.js";
 
 let character;
