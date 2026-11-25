@@ -1,5 +1,6 @@
 
- 
+
+
 import Platforms from "./platforms.js";
 import Character from "./caracter.js";
 
@@ -15,6 +16,8 @@ let platformHeight = 10;
 let gameOver = false;
 let cameraY = 0;
  
+let score = 0;
+let highscore = 0;
 
 function setup() {
   createCanvas(300, 500);
@@ -29,6 +32,10 @@ function draw() {
 
   // Game Over screen
   if (gameOver == true) {
+    textSize(18);
+text("Your score: " + score, width / 2, height / 2 + 65);
+
+text("Highscore: " + highScore, width / 2, height / 2 + 90);
     fill(0);
     textSize(30);
     textAlign(CENTER);
@@ -44,31 +51,52 @@ function draw() {
   character.moveCharacter();
 
   // Move camera when character gets too high
-  if (character.y < height * 0.4) {
-    let difference = height * 0.4 - character.y;
+  if (character.y < 200) {
+  let difference = 200 - character.y;
 
-    character.y = height * 0.4;
-    cameraY += difference;
+  character.y = 200;
+  cameraY += difference;
 
-    platformManager.movePlatforms(difference);
+  platformManager.movePlatforms(difference);
+
+  // Update score
+  score = Math.floor(cameraY);
+
+  // Update high score
+  if (score > highScore) {
+    highScore = score;
   }
-
+}
   // Check collisions
   character.checkCollision(platformManager);
 
   // Draw everything
   platformManager.draw();
   character.drawCharacter();
+  // Display score
+fill(0);
+textSize(16);
+textAlign(LEFT);
+text("Score: " + score, 10, 25);
+
+text("Highscore: " + highScore, 10, 45); 
 
   // Check if character falls off screen
   if (character.y > height) {
     gameOver = true;
+
+
   }
 }
 
 // Restart game
 function restartGame() {
   character.restartCharacter();
+  platformManager.setup();
+
+  cameraY = 0;
+  score = 0;
+
   gameOver = false;
 }
 
