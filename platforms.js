@@ -1,43 +1,44 @@
-let platforms = [];
-function setup() {
-  createCanvas(300, 500);
-}
+export default class Platforms {
+  platforms = [];
 
-// generate 5 platforms
-for (let i = 0; i < 5; i++) {
-  // create a platform object with random x position and fixed y position
-  let platform = {
-    x: random(0, 220),
-    y: i * 80,
-    w: 80,
-    h: 15,
-    //asignes aplatfrom its roole at random
-    type: random(["normal", "moving", "breaking"]),
-  };
-  // setts the moving platform speed to 1
-  if (platform.type === "moving") {
-    platfrom.speed = 1;
-    // add the platform to the platforms array
-    platforms.push(platform);
+  constructor() {
+    this.platforms = [];
+  }
+  setup() {
+    // generate 5 platforms
+    for (let i = 0; i < 5; i++) {
+      // create a platform object with random x position and fixed y position
+      let platform = {
+        x: random(0, 220),
+        y: i * 80,
+        w: 80,
+        h: 15,
+        //asignes a platform its role at random
+        type: random(["normal", "moving", "breaking"]),
+      };
+
+      // sets the moving platform speed to 1
+      if (platform.type === "moving") {
+        platform.speed = 1;
+      }
+
+      // add every platform to the platforms array
+      this.platforms.push(platform);
+    }
   }
 
-  function draw() {
-    background(255);
-
-    for (let platform of platforms) {
-      //id draws the platforms
+  draw() {
+    for (let platform of this.platforms) {
+      //it draws the platforms
       rect(platform.x, platform.y, platform.w, platform.h);
 
       if (platform.type === "moving") {
-        platform.x = platform.x + 1;
+        platform.x = platform.x + platform.speed;
 
         if (platform.x < 0 || platform.x > width - platform.w) {
-          platform.speed = -platform.speed * -1;
-          //console.log("Platform is out of bounds");
-          // make the platform move left and right
+          platform.speed = platform.speed * -1;
         }
       } else if (platform.type === "breaking") {
-        // make the platform break when the character lands on it
         platform.h = 7;
       }
     }
