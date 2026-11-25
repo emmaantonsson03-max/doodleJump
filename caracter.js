@@ -6,7 +6,7 @@ let velocityY = -10;
 let gravity = 0.4;
 
 let platformX = 75;
-let platformY = 300;
+let platformY = 400;
 let platformWidth = 100;
 let platformHeight = 10;
 let gameOver = false;
