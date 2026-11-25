@@ -20,6 +20,8 @@ export default class Platforms {
       // sets the moving platform speed to 1
       if (platform.type === "moving") {
         platform.speed = 1;
+      } else if (platform.type === "breaking") {
+        platform.h = 7;
       }
 
       // add every platform to the platforms array

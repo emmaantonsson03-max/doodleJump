@@ -1,7 +1,8 @@
-import platforms from "./platforms.js";
+import platforms from "./Platforms.js";
 import Character from "./caracter.js";
 
 let character;
+let platformManager;
 
 let platformX = 75;
 let platformY = 400;
@@ -14,6 +15,8 @@ function setup() {
   createCanvas(300, 500);
 
   character = new Character();
+  platformManager = new Platforms();
+  platformManager.setup();
 }
 
 function draw() {
@@ -32,6 +35,7 @@ function draw() {
     return;
   }
 
+  platformManager.draw();
   character.moveCharacter();
   character.drawCharacter();
   drawPlatform();
@@ -53,3 +57,6 @@ function keyPressed() {
     restartGame();
   }
 }
+window.setup = setup;
+window.draw = draw;
+window.keyPressed = keyPressed;
