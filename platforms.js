@@ -39,14 +39,15 @@ export default class Platforms {
     this.platforms = this.platforms.filter(function (platform) {
       return platform.y < height;
     });
-    // this generates new platforms.
+    // this generates new platforms, makes sure the gap is even in the new generation.
     while (this.platforms.length < 5) {
-      this.platforms.push(this.makePlatform(0));
+      let highestY = Math.min(...this.platforms.map((platform) => platform.y));
+
+      let newY = highestY - 55;
+      this.platforms.push(this.makePlatform(newY));
     }
 
     for (let platform of this.platforms) {
-      platform.y = platform.y + 1;
-
       //it draws the platforms
       rect(platform.x, platform.y, platform.w, platform.h);
 
