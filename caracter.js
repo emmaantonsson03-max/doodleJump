@@ -49,9 +49,9 @@ export default class Character {
     if (
       this.velocityY > 0 &&
       this.y + this.height >= platform.y &&
-      this.y + this.height <= platform.y + platform.height + this.velocityY &&
+      this.y + this.height <= platform.y + platform.h + this.velocityY &&
       this.x + this.width > platform.x &&
-      this.x < platform.x + platform.width
+      this.x < platform.x + platform.w
     ) {
       this.y = platform.y - this.height;
       this.velocityY = -10;

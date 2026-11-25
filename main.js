@@ -53,7 +53,7 @@ function restartGame() {
 }
 
 function keyPressed() {
-  if (gameOver == true && key == " ") {
+   if (gameOver == true && key == " ") {
     restartGame();
   }
 }
