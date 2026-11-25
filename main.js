@@ -1,3 +1,5 @@
+
+ 
 import Platforms from "./platforms.js";
 import Character from "./caracter.js";
 
@@ -9,7 +11,10 @@ let platformY = 400;
 let platformWidth = 100;
 let platformHeight = 10;
 
+
 let gameOver = false;
+let cameraY = 0;
+ 
 
 function setup() {
   createCanvas(300, 500);
@@ -35,9 +40,24 @@ function draw() {
     return;
   }
 
-  platformManager.draw();
+  // Move character
   character.moveCharacter();
+
+  // Move camera when character gets too high
+  if (character.y < height * 0.4) {
+    let difference = height * 0.4 - character.y;
+
+    character.y = height * 0.4;
+    cameraY += difference;
+
+    platformManager.movePlatforms(difference);
+  }
+
+  // Check collisions
   character.checkCollision(platformManager);
+
+  // Draw everything
+  platformManager.draw();
   character.drawCharacter();
 
   // Check if character falls off screen
