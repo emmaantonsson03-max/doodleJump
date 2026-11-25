@@ -9,24 +9,37 @@ let platformX = 75;
 let platformY = 300;
 let platformWidth = 100;                           
 let platformHeight = 10;
+let gameOver = false; 
 
 function setup(){
     createCanvas(300,400);
 }
 
 function draw(){
-background(255);   
+    background(255);
 
+    if (gameOver == true) {
+    fill(0);
+    textSize(30);
+    textAlign(CENTER);
+    text("GAME OVER", width / 2, height / 2);
 
+    textSize(15);
+    text("Press SPACE to restart", width / 2, height / 2 + 35);
 
-moveCharacter();
-drawCharacter();
-drawPlatform(); 
+    return;
+}
 
+    
 
+    moveCharacter();
+    drawCharacter();
+    drawPlatform();
 
-
-
+    // Check if character falls off screen
+    if (characterY > height) {
+        gameOver = true;
+    }
 }
 
 function moveCharacter(){
@@ -75,7 +88,18 @@ function drawPlatform(){
 
 }
 
+function restartGame(){
+    characterX = 100; 
+    characterY = 350; 
+    velocityY = -10;
+    gameOver = false; 
 
+}
 
+function keyPressed(){
+    if(gameOver == true && key == ' '){
+        restartGame();
+    }
+}
 
 
