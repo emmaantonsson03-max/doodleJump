@@ -16,7 +16,4 @@ function draw() {
 window.setup = setup;
 window.draw = draw;
 
-function setup() {
-  createCanvas(300, 500);
-  background(255);
-}
+//do here
