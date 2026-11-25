@@ -41,4 +41,23 @@ export default class Character {
     this.y = 350;
     this.velocityY = -10;
   }
+  checkCollision(platformmanager) {
+
+  // Check all platforms
+  for (let platform of platformmanager.platforms) {
+
+    if (
+      this.velocityY > 0 &&
+      this.y + this.height >= platform.y &&
+      this.y + this.height <= platform.y + platform.height + this.velocityY &&
+      this.x + this.width > platform.x &&
+      this.x < platform.x + platform.width
+    ) {
+      this.y = platform.y - this.height;
+      this.velocityY = -10;
+    }
+  }
+}
+
+ 
 }
