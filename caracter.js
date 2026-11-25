@@ -1,5 +1,80 @@
+let characterX = 100;
+let characterY = 350;
+
+let characterSpeed = 20;
+let velocityY = -10;
+let gravity = 0.4; 
+
+let platformX = 75;
+let platformY = 300;
+let platformWidth = 100;                           
+let platformHeight = 10;
+
 function setup(){
-    createCanvas(400,100);
-    background(255);
+    createCanvas(300,400);
+}
+
+function draw(){
+background(255);   
+
+
+
+moveCharacter();
+drawCharacter();
+drawPlatform(); 
+
+
+
 
 }
+
+function moveCharacter(){
+//Gravity
+velocityY = velocityY + gravity;
+characterY = characterY + velocityY; 
+
+//Move left
+if(keyIsDown(LEFT_ARROW)){
+characterX = characterX - characterSpeed; 
+
+}  
+                 
+ //move right
+if(keyIsDown(RIGHT_ARROW)){
+    characterX = characterX + characterSpeed;
+// Stay inside canvas
+    characterX = constrain(characterX, 0, 250);
+
+
+}
+
+ if(
+        velocityY > 0 &&
+        characterY + 50 >= platformY &&
+        characterY + 50 <= platformY + platformHeight + velocityY &&
+        characterX + 50 > platformX &&
+        characterX < platformX + platformWidth
+    ){
+        characterY = platformY - 50;
+        velocityY = -10;
+    }   
+
+}
+
+        
+function drawCharacter(){
+    fill(0);
+    rect(characterX,characterY,50,50);
+}
+
+
+function drawPlatform(){
+    fill("green");
+    rect(platformX,platformY,platformWidth,platformHeight);
+
+}
+
+
+
+
+
