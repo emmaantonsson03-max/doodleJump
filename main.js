@@ -65,7 +65,7 @@ if(gameStarted == false){
     character.y = 200;
     cameraY += difference;
 
-    platformManager.movePlatforms(difference);
+    platformManager.movePlatforms(difference);  
 
     // Update score
     score = Math.floor(cameraY);
