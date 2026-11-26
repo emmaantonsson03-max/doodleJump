@@ -33,6 +33,11 @@ export default class Platforms {
       this.platforms.push(this.makePlatform(i * 80));
     }
   }
+  //this resets the platforms for next game with the help of main.js
+  reset() {
+    this.platforms = [];
+    this.setup();
+  }
 
   draw() {
     // this draws one more llatform for every platform lost, keep 5
@@ -43,13 +48,15 @@ export default class Platforms {
     while (this.platforms.length < 5) {
       let highestY = Math.min(...this.platforms.map((platform) => platform.y));
 
-      let newY = highestY - 55;
+      let newY = highestY - 100;
       this.platforms.push(this.makePlatform(newY));
     }
 
     for (let platform of this.platforms) {
       //it draws the platforms
       rect(platform.x, platform.y, platform.w, platform.h);
+
+      //tells the computer what the diferent types of platforms should do and how.
 
       if (platform.type === "moving") {
         platform.x = platform.x + platform.speed;
@@ -61,10 +68,11 @@ export default class Platforms {
         //create breaking platform effect
       }
     }
-    fill(0);
-    text(this.platforms.length, 10, 20);
   }
 
+  f;
+
+  //this is the code that is needed so camera folows caracter
   movePlatforms(amount) {
     for (let platform of this.platforms) {
       platform.y += amount;

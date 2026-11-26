@@ -1,6 +1,3 @@
-
-
-
 import Platforms from "./platforms.js";
 import Character from "./caracter.js";
 
@@ -12,16 +9,14 @@ let platformY = 400;
 let platformWidth = 100;
 let platformHeight = 10;
 
-
 let gameOver = false;
 let cameraY = 0;
- 
-let score = 0; 
+
+let score = 0;
 let highScore = 0;
 
 function setup() {
   createCanvas(300, 500);
-
 
   character = new Character();
   platformManager = new Platforms();
@@ -34,9 +29,9 @@ function draw() {
   // Game Over screen
   if (gameOver == true) {
     textSize(18);
-text("Your score: " + score, width / 2, height / 2 + 65);
+    text("Your score: " + score, width / 2, height / 2 + 65);
 
-text("Highscore: " + highScore, width / 2, height / 2 + 90);
+    text("Highscore: " + highScore, width / 2, height / 2 + 90);
     fill(0);
     textSize(30);
     textAlign(CENTER);
@@ -53,21 +48,21 @@ text("Highscore: " + highScore, width / 2, height / 2 + 90);
 
   // Move camera when character gets too high
   if (character.y < 200) {
-  let difference = 200 - character.y;
+    let difference = 200 - character.y;
 
-  character.y = 200;
-  cameraY += difference;
+    character.y = 200;
+    cameraY += difference;
 
-  platformManager.movePlatforms(difference);
+    platformManager.movePlatforms(difference);
 
-  // Update score
-  score = Math.floor(cameraY);
+    // Update score
+    score = Math.floor(cameraY);
 
-  // Update high score
-  if (score > highScore) {
-    highScore = score;
+    // Update high score
+    if (score > highScore) {
+      highScore = score;
+    }
   }
-}
   // Check collisions
   character.checkCollision(platformManager);
 
@@ -75,25 +70,23 @@ text("Highscore: " + highScore, width / 2, height / 2 + 90);
   platformManager.draw();
   character.drawCharacter();
   // Display score
-fill(0);
-textSize(16);
-textAlign(LEFT);
-text("Score: " + score, 10, 25);
+  fill(0);
+  textSize(16);
+  textAlign(LEFT);
+  text("Score: " + score, 10, 25);
 
-text("Highscore: " + highScore, 10, 45); 
+  text("Highscore: " + highScore, 10, 45);
 
   // Check if character falls off screen
   if (character.y > height) {
     gameOver = true;
-
-
   }
 }
 
 // Restart game
 function restartGame() {
   character.restartCharacter();
-  platformManager.setup();
+  platformManager.reset();
 
   cameraY = 0;
   score = 0;
