@@ -25,7 +25,13 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(190,230,255);
+
+  // draw the clouds
+  drawCloud(40,100);
+  drawCloud(200,180);
+  drawCloud(100,320);
+
 if(gameStarted == false){
   fill(0);
   textAlign(CENTER);
@@ -37,6 +43,16 @@ if(gameStarted == false){
   text("Press SPACE to start", width / 2, height / 2 + 20);
 
   return;
+}
+
+function drawCloud(x,y){
+  noStroke();
+  fill(255);
+
+  ellipse(x,y,40,30);
+  ellipse(x + 20, y -10, 40, 40);
+  ellipse(x + 40, y, 40, 30);
+  ellipse(x + 20, y + 5, 50, 25);
 }
   // Game Over screen
   if (gameOver == true) {
