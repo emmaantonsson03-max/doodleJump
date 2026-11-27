@@ -27,7 +27,7 @@ export default class Platforms {
   }
   //creates the first five evenly spaced platforms and pushes then im the aray for the start of the game.
   setup() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       this.platforms.push(this.makePlatform(i * 80));
     }
   }
@@ -44,10 +44,10 @@ export default class Platforms {
     });
     //makes sure new platforms are spawned and keep them total 5, if only 4 then spawn new one...
     //ai has assisted with this part.
-    while (this.platforms.length < 5) {
+    while (this.platforms.length < 6) {
       let highestY = Math.min(...this.platforms.map((platform) => platform.y));
       // this generates new platform once old has been deleted 100pixels above.
-      let newY = highestY - 100;
+      let newY = highestY - 80;
       this.platforms.push(this.makePlatform(newY));
     }
 
