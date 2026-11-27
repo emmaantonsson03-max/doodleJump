@@ -10,6 +10,7 @@ let platformWidth = 100;
 let platformHeight = 10;
 
 let gameOver = false;
+let gameStarted = false;
 let cameraY = 0;
 
 let score = 0;
@@ -24,8 +25,35 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(190,230,255);
 
+  // draw the clouds
+  drawCloud(40,100);
+  drawCloud(200,180);
+  drawCloud(100,320);
+
+if(gameStarted == false){
+  fill(0);
+  textAlign(CENTER);
+
+  textSize(35);
+  text("DOODLE JUMP", width / 2, height / 2 -50);
+
+  textSize(16);
+  text("Press SPACE to start", width / 2, height / 2 + 20);
+
+  return;
+}
+
+function drawCloud(x,y){
+  noStroke();
+  fill(255);
+
+  ellipse(x,y,40,30);
+  ellipse(x + 20, y -10, 40, 40);
+  ellipse(x + 40, y, 40, 30);
+  ellipse(x + 20, y + 5, 50, 25);
+}
   // Game Over screen
   if (gameOver == true) {
     textSize(18);
@@ -53,7 +81,7 @@ function draw() {
     character.y = 200;
     cameraY += difference;
 
-    platformManager.movePlatforms(difference);
+    platformManager.movePlatforms(difference);  
 
     // Update score
     score = Math.floor(cameraY);
@@ -95,9 +123,16 @@ function restartGame() {
 }
 
 function keyPressed() {
-  if (gameOver == true && key == " ") {
-    restartGame();
-  }
+
+    // Start game
+    if (gameStarted == false && key == " ") {
+        gameStarted = true;
+    }
+
+    // Restart game
+    else if (gameOver == true && key == " ") {
+        restartGame();
+    }
 }
 window.setup = setup;
 window.draw = draw;
