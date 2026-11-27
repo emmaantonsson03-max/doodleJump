@@ -1,5 +1,4 @@
 export default class Character {
-
   constructor() {
     // Character properties
     this.x = 100;
@@ -42,22 +41,18 @@ export default class Character {
     this.velocityY = -10;
   }
   checkCollision(platformmanager) {
-
-  // Check all platforms
-  for (let platform of platformmanager.platforms) {
-
-    if (
-      this.velocityY > 0 &&
-      this.y + this.height >= platform.y &&
-      this.y + this.height <= platform.y + platform.h + this.velocityY &&
-      this.x + this.width > platform.x &&
-      this.x < platform.x + platform.w
-    ) {
-      this.y = platform.y - this.height;
-      this.velocityY = -10;
+    // Check all platforms
+    for (let platform of platformmanager.platforms) {
+      if (
+        this.velocityY > 0 &&
+        this.y + this.height >= platform.y &&
+        this.y + this.height <= platform.y + platform.h + this.velocityY &&
+        this.x + this.width > platform.x &&
+        this.x < platform.x + platform.w
+      ) {
+        this.y = platform.y - this.height;
+        this.velocityY = -10;
+      }
     }
   }
-}
-
- 
 }

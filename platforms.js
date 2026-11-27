@@ -1,12 +1,11 @@
 export default class Platforms {
-  platforms = [];
-
   constructor() {
+    //the array that stores the platforms in use :)
     this.platforms = [];
   }
 
   makePlatform(y) {
-    // create a platform object with random x position and fixed y position
+    // create and returns a platform with random x position and fixed other
     let platform = {
       x: random(0, 220),
       y: y,
@@ -19,16 +18,15 @@ export default class Platforms {
     // sets the moving platform speed to 1
     if (platform.type === "moving") {
       platform.speed = 1;
-      // sets the breaking platform height to 7
+      // sets the breaking platform height to 7 (make it thiner)
     } else if (platform.type === "breaking") {
       platform.h = 7;
     }
-
+    //returns the platfor so it can be accesd later in the code.
     return platform;
   }
-
+  //creates the first five evenly spaced platforms and pushes then im the aray for the start of the game.
   setup() {
-    // generate 5 platforms
     for (let i = 0; i < 5; i++) {
       this.platforms.push(this.makePlatform(i * 80));
     }
@@ -40,14 +38,15 @@ export default class Platforms {
   }
 
   draw() {
-    // this draws one more llatform for every platform lost, keep 5
+    // deletes platforms that do not fit the filter form the aray (if y is to high)
     this.platforms = this.platforms.filter(function (platform) {
       return platform.y < height;
     });
-    // this generates new platforms, makes sure the gap is even in the new generation.
+    //makes sure new platforms are spawned and keep them total 5, if only 4 then spawn new one...
+    //ai has assisted with this part.
     while (this.platforms.length < 5) {
       let highestY = Math.min(...this.platforms.map((platform) => platform.y));
-
+      // this generates new platform once old has been deleted 100pixels above.
       let newY = highestY - 100;
       this.platforms.push(this.makePlatform(newY));
     }
@@ -64,15 +63,11 @@ export default class Platforms {
         if (platform.x < 0 || platform.x > width - platform.w) {
           platform.speed = platform.speed * -1;
         }
-      } else if (platform.type === "breaking") {
-        //create breaking platform effect
       }
     }
   }
 
-  f;
-
-  //this is the code that is needed so camera folows caracter
+  //this is the together with main.js creates the "camera folow" effect, it lowers the platforms at the same pace caracter moves up.
   movePlatforms(amount) {
     for (let platform of this.platforms) {
       platform.y += amount;
